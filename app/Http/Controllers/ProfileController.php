@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ProfileController extends Controller
 {
-    public function index($id)
+    public function index(Request $request)
     {
         $name = "Donal Trump";
         $age = "75";
 
         $data = [
-            "id" => $id,
+            "id" => $request->id,
             "name" => $name,
             "age" => $age
         ];
@@ -26,5 +27,6 @@ class ProfileController extends Controller
         $httpOnly = true;
 
         return response($data, 200)->cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
+    
     }
 }
